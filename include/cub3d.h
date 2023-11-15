@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 11:36:06 by pineau            #+#    #+#             */
-/*   Updated: 2023/11/15 15:43:20 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:54:05 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include "../Libft/libft.h"
+# include "../get_next_line/get_next_line.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
@@ -87,12 +88,12 @@ void		end(t_data *data);
 void		put_pixel(t_img *img, int x, int y, int color);
 void		erase_player(t_data *data);
 
-/*get_next_line*/
-char		*get_next_line(int fd);
-int			ft_strlen(char *str);
-char		*ft_strdup(char *s);
-char		*ft_strjoin(char *s1, char *s2);
-char		*ft_substr(char *s, unsigned int start, size_t len);
+// /*get_next_line*/
+// char		*get_next_line(int fd);
+// int			ft_strlen(char *str);
+// char		*ft_strdup(char *s);
+// char		*ft_strjoin(char *s1, char *s2);
+// char		*ft_substr(char *s, unsigned int start, size_t len);
 
 /*get_line.c*/
 void		get_line(t_data *data);
