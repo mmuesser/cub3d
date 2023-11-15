@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 11:36:06 by pineau            #+#    #+#             */
-/*   Updated: 2023/11/15 15:54:05 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:54:26 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
-# include <mlx.h>
+// # include <mlx.h>
 // # include <key_code.h>
 # include <math.h>
 # include <X11/X.h>
@@ -142,7 +142,7 @@ void	draw_ray(t_data *data);
 int		ardi(double nombre);
 
 
-
-
+/*parsing.c*/
+char	**split_file(char *tmp);
 
 #endif

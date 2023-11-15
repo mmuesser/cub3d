@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:14:09 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/09/29 00:50:01 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:22:40 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@ int	ft_strlen(const char *str)
 	int	i;
 
 	i = 0;
-	if (str)
-	{
-		while (str[i])
-			i++;
-	}
+	if (!str)
+		return (0);
+	while (str[i])
+		i++;
 	return (i);
 }
