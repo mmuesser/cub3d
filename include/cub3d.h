@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 11:36:06 by pineau            #+#    #+#             */
-/*   Updated: 2023/11/15 16:54:26 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/11/20 19:08:42 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_map
 	int		mapy;
 	int		maps;
 	char	**map;
+	char	**desc;
 }	t_map;
 
 typedef struct s_data
@@ -124,12 +125,6 @@ void		key_up(t_data *data);
 void		key_right(t_data *data);
 void		key_left(t_data *data);
 
-
-
-
-
-
-
 /*tmp*/
 void	draw_square(t_data *data, int x, int y, int color);
 void	draw_squares(t_data *data);
@@ -143,6 +138,12 @@ int		ardi(double nombre);
 
 
 /*parsing.c*/
-char	**split_file(char *tmp);
+char	**split_file_line(char *tmp);
+void	print_tab(char **tab);
+int		check_ext(char *file_name, char *ext);
+t_data	*split_desc_and_map(t_data *data, char **file);
+void	free_tab(char **file);
+int		check_desc(char **file);
+int		check_map(char **file);
 
 #endif

@@ -1,7 +1,11 @@
 NAME = cub3d
 
-SRCS =	split_file.c \
+SRCS =	split_file_line.c \
 		parsing.c \
+		check_desc.c \
+		check_map.c \
+		init.c \
+		split_desc_and_map.c \
 
 OBJS = ${SRCS:.c=.o}
 

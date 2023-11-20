@@ -25,7 +25,7 @@ RM = rm -f
 .c.o:
 			@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
-${NAME}:	${OBJS}
+${NAME}:	${OBJS} Makefile ./libft.h
 			@echo "Making Libft..."
 			$(AR) ${NAME} ${OBJS}
 			@echo "Libft is done"
