@@ -22,7 +22,7 @@ void	free_tab(char **file)
 	free(file);
 }
 
-int	len_tab(char *tmp)
+static int	len_tab(char *tmp)
 {
 	int	count;
 	int	i;
