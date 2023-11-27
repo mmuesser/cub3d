@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 14:51:40 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/11/21 17:47:08 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:58:19 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int	check_file(t_data *data, char *file_name)
 	}
 	if (check_map(data->map->map) == 1)
 	{
-		free_tab(file);
+		// free_tab(file);
 		return (1);
 	}
 	return (0);

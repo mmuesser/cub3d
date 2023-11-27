@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:07:26 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/11/22 15:35:04 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/11/27 18:28:06 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,21 @@ int	len_tab(char **map)
 	return (i);
 }
 
+void	fill_line(char **line, char *src, int len)
+{
+	int	i;
+
+	i = -1;
+	while (src[++i])
+		(*line)[i] = src[i];
+	while (i < len)
+	{
+		(*line)[i] = ' ';
+		i++;
+	}
+	(*line)[i] = '\0';
+}
+
 char	**cpy_map(char **map)
 {
 	char	**map_cpy;
@@ -55,14 +70,125 @@ char	**cpy_map(char **map)
 		map_cpy[i] = (char *) malloc(sizeof(char) * (max_len(map) + 1));
 		if (!map_cpy[i])
 			return (free_tab(map_cpy), NULL);
-		
+		fill_line(&map_cpy[i], map[i], max_len(map));
 	}
 	map_cpy[i] = NULL;
 	free_tab(map);
 	return (map_cpy);
 }
 
+int	check_bordure(char **map)
+{
+	int	i;
+	int	y;
+
+	i = -1;
+	while (map[++i])
+	{
+		y = -1;
+		if(i == 0 || i == len_tab(map) - 1)
+		{
+			while (map[i][++y])
+			{
+				if (map[i][y] != '1' && map[i][y] != ' ')
+					return (1);
+			}
+			continue ;
+		}
+		while (map[i][++y] == ' ')
+			;
+		if (map[i][y] != '1')
+			return (1);
+		y = ft_strlen(map[i]);
+		while (map[i][--y] == ' ')
+			;
+		if (map[i][y] != '1')
+			return (1);
+	}
+	return (0);
+}
+
+int	check_espace(char **map)
+{
+	int	i;
+	int	y;
+
+	i = -1;
+	while (map[++i])
+	{
+		y = -1;
+		while (map[i][++y])
+		{
+			if (map[i][y] == ' ')
+			{
+				if (i > 0 && (map[i - 1][y] != ' ' 
+					&& map[i - 1][y] != '1'))
+					return (1);
+				if (i < len_tab(map) - 1 && (map[i + 1][y] != ' ' 
+					&& map[i + 1][y] != '1'))
+					return (1);
+				if (y > 0 && (map[i][y - 1] != ' ' 
+					&& map[i][y - 1] != '1'))
+					return (1);
+				if (y < ft_strlen(map[i]) - 1 && (map[i][y + 1] != ' ' 
+					&& map[i][y + 1] != '1'))
+					return (1);
+			}
+		}
+	}
+	return (0);
+}
+
+int	check_pos(char **map)
+{
+	int	i;
+	int	y;
+	int	count;
+	
+	count = 0;
+	i = -1;
+	while (map[++i])
+	{
+		y = -1;
+		while (map[i][++y])
+		{
+			if (map[i][y] != '1' && map[i][y] != '0' && map[i][y] != ' '
+				&& map[i][y] != 'N' && map[i][y] != 'S' && map[i][y] != 'W'
+				&& map[i][y] != 'E')
+				return (1);
+			if (map[i][y] == 'N' || map[i][y] == 'S' || map[i][y] == 'W'
+				|| map[i][y] == 'E')
+				count++;
+		}
+	}
+	if (count != 1)
+		return (1);
+	return (0);
+}
+
 int	check_map(char **map)
 {
-	map = cpy_map()
+	map = cpy_map(map);
+	if (!map)
+	{
+		printf("Error\nCheck map 1\n");
+		return (1);
+	}
+	print_tab(map);
+	if (check_bordure(map) == 1)
+	{
+		printf("Error\nCheck map 2\n");
+		return (1);
+	}
+	if (check_espace(map) == 1)
+	{
+		printf("Error\nCheck map 3\n");
+		return (1);
+	}
+	if (check_pos(map) == 1)
+	{
+		printf("Error\nCheck map 4\n");
+		return (1);
+	}
+	return (0);
 }
