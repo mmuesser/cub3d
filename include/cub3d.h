@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 11:36:06 by pineau            #+#    #+#             */
-/*   Updated: 2023/11/21 14:45:15 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/11/28 14:38:31 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,8 +142,10 @@ char	**split_file_line(char *tmp);
 void	print_tab(char **tab);
 int		check_ext(char *file_name, char *ext);
 t_data	*split_desc_and_map(t_data *data, char **file);
-void	free_tab(char **file);
+void	free_tab(char **tab);
 int		check_desc(char **desc);
 int		check_map(char **map);
+int		free_all(t_data *data);
+void	free_data(t_data *data);
 
 #endif

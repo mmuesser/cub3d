@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:14:02 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/11/20 17:59:57 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/11/28 16:11:49 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,7 @@ t_data	*split_desc_and_map(t_data *data, char **file)
 	l_map = len_map(file, l_desc);
 	data->map->map = (char **) malloc(sizeof(char *) * (l_map + 1));
 	if (!data->map->map)
-	{
-		free_tab(data->map->desc);
-		return (NULL);
-	}
+		return (free_tab(data->map->desc), NULL);
 	while (file[i] && file[i][0] == '\0')
 		i++;
 	j = 0;

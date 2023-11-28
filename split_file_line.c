@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split_file_line.c                                       :+:      :+:    :+:   */
+/*   split_file_line.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/15 16:08:33 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/11/20 15:33:17 by mmuesser         ###   ########.fr       */
+/*   Created: 2023/11/28 15:05:08 by mmuesser          #+#    #+#             */
+/*   Updated: 2023/11/28 16:09:16 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/cub3d.h"
 
-void	free_tab(char **file)
+void	free_tab(char **tab)
 {
 	int	i;
-	
-	i = -1;
-	while (file[++i])
-		free(file[i]);
-	free(file);
+
+	if (tab)
+	{
+		i = -1;
+		while (tab[++i])
+			free(tab[i]);
+		free(tab);
+	}
 }
 
 static int	len_tab(char *tmp)

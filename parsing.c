@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 14:51:40 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/11/27 17:58:19 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/11/28 16:12:50 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,15 @@ char	**get_file(char *file_name)
 		return (NULL);
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
-		return (NULL);
+		return (free(tmp), NULL);
 	count = read(fd, tmp, len);
 	tmp[len] = '\0';
 	close(fd);
 	if (count == -1)
-		return free(tmp), (NULL);
+		return (free(tmp), NULL);
 	file = split_file_line(tmp);
 	if (!file)
-		return (NULL);
+		return (free(tmp), NULL);
 	free(tmp);
 	return (file);
 }
@@ -104,13 +104,23 @@ int	check_file(t_data *data, char *file_name)
 		return (1);
 	data = split_desc_and_map(data, file);
 	if (check_desc(data->map->desc) == 1)
+		return (free_tab(file), 1);
+	if (check_map(data->map->map) == 1)
+		return (free_tab(file), 1);
+	free_tab(file);
+	return (0);
+}
+
+int	parsing(t_data *data, int ac, char **av)
+{
+	if (ac != 2)
 	{
-		free_tab(file);
+		printf("Error\nWrong number of arguments\n");
 		return (1);
 	}
-	if (check_map(data->map->map) == 1)
+	if (check_file(data, av[1]) == 1)
 	{
-		// free_tab(file);
+		printf("Error\npb fichier\n");
 		return (1);
 	}
 	return (0);
@@ -121,15 +131,11 @@ int	main(int ac, char **av)
 	t_data	data;
 
 	init_data(&data);
-	if (ac != 2)
+	if (parsing(&data, ac, av) == 1)
 	{
-		printf("Error\nWrong number of arguments\n");
+		free_all(&data);
 		return (1);
 	}
-	if (check_file(&data, av[1]) == 1)
-	{
-		printf("Error\npb fichier\n");
-		return (1);
-	}
+	free_all(&data);
 	return (0);
 }
