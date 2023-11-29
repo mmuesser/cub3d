@@ -6,13 +6,13 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:05:08 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/11/29 17:40:32 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/11/29 18:30:58 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/cub3d.h"
 
-static int	len_tab(char *tmp)
+static int	len_dest(char *tmp)
 {
 	int	count;
 	int	i;
@@ -75,7 +75,7 @@ char	**split_file_line(char *tmp)
 	int		count;
 	char	**file;
 
-	count = len_tab(tmp);
+	count = len_dest(tmp);
 	file = (char **) malloc(sizeof(char *) * (count + 1));
 	if (!file)
 		return (NULL);
