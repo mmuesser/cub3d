@@ -6,24 +6,11 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:05:08 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/11/28 16:09:16 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/11/29 17:40:32 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/cub3d.h"
-
-void	free_tab(char **tab)
-{
-	int	i;
-
-	if (tab)
-	{
-		i = -1;
-		while (tab[++i])
-			free(tab[i]);
-		free(tab);
-	}
-}
 
 static int	len_tab(char *tmp)
 {

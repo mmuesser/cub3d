@@ -1,7 +1,7 @@
-NO  img/ael-bekk.xpm
-SO img/mel-hada.xpm
-WE img/mabenchi.xpm
-EA    img/zboudair.xpm
+NO ./pics/bluestone.xpm
+SO ./pics/greystone.xpm
+WE ./pics/redbrick.xpm
+EA ./pics/flag.xpm
 
 F 98,105,109
 C 80,130,200

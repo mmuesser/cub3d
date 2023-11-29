@@ -6,55 +6,11 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:07:26 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/11/28 16:17:13 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/11/29 17:45:07 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/cub3d.h"
-
-int	max_len(char **map)
-{
-	int	i;
-	int	j;
-	int	max;
-
-	max = 0;
-	i = -1;
-	while (map[++i])
-	{
-		j = -1;
-		while (map[i][++j])
-			;
-		if (j > max)
-			max = j;
-	}
-	return (max);
-}
-
-int	len_tab(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-		i++;
-	return (i);
-}
-
-void	fill_line(char **line, char *src, int len)
-{
-	int	i;
-
-	i = -1;
-	while (src[++i])
-		(*line)[i] = src[i];
-	while (i < len)
-	{
-		(*line)[i] = ' ';
-		i++;
-	}
-	(*line)[i] = '\0';
-}
 
 char	**cpy_map(char **map)
 {
@@ -76,11 +32,8 @@ char	**cpy_map(char **map)
 	return (map_cpy);
 }
 
-int	check_bordure(char **map)
+int	check_bordure(char **map, int i, int y)
 {
-	int	i;
-	int	y;
-
 	i = -1;
 	while (map[++i])
 	{
@@ -170,7 +123,7 @@ int	check_map(char **map)
 	map_cpy = cpy_map(map);
 	if (!map_cpy)
 		return (1);
-	if (check_bordure(map_cpy) == 1)
+	if (check_bordure(map_cpy, 0, 0) == 1)
 		return (free_tab(map_cpy), 1);
 	if (check_espace(map_cpy) == 1)
 		return (free_tab(map_cpy), 1);

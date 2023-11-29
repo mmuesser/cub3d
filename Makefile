@@ -7,6 +7,8 @@ SRCS =	split_file_line.c \
 		init.c \
 		split_desc_and_map.c \
 		free_all.c \
+		error.c \
+		utils_parsing.c
 
 OBJS = ${SRCS:.c=.o}
 

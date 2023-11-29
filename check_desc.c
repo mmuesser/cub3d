@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:31:09 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/11/28 16:20:32 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/11/29 17:27:16 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,10 @@ int	check_path(char **desc)
 	return (0);
 }
 
-int	check_rgb(char **desc)
+int	check_rgb(char **desc, int test, int count)
 {
 	int	i;
 	int	j;
-	int	test;
-	int	count;
 
 	i = -1;
 	while (desc[++i])
@@ -105,7 +103,7 @@ int	check_desc(char **desc)
 		return (1);
 	if (check_path(desc) == 1)
 		return (1);
-	if (check_rgb(desc) == 1)
+	if (check_rgb(desc, 0, 0) == 1)
 		return (1);
 	return (0);
 }

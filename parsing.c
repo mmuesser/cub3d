@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 14:51:40 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/11/28 16:12:50 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/11/29 17:41:15 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	**get_file(char *file_name)
 		return (NULL);
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
-		return (free(tmp), NULL);
+		return (free(tmp), error(5), NULL);
 	count = read(fd, tmp, len);
 	tmp[len] = '\0';
 	close(fd);
@@ -84,29 +84,22 @@ int	check_ext(char *file_name, char *ext)
 	return (0);
 }
 
-void	print_tab(char **tab)
-{
-	int	i;
-
-	i = -1;
-	while (tab[++i])
-		printf("%s\n", tab[i]);
-}
-
 int	check_file(t_data *data, char *file_name)
 {
 	char	**file;
 
 	if (check_ext(file_name, ".cub") == 1)
-		return (1);
+		return (error(1));
 	file = get_file(file_name);
 	if (!file)
 		return (1);
 	data = split_desc_and_map(data, file);
+	if (!data)
+		return (error(2));
 	if (check_desc(data->map->desc) == 1)
-		return (free_tab(file), 1);
+		return (free_tab(file), error(3));
 	if (check_map(data->map->map) == 1)
-		return (free_tab(file), 1);
+		return (free_tab(file), error(4));
 	free_tab(file);
 	return (0);
 }
@@ -114,15 +107,9 @@ int	check_file(t_data *data, char *file_name)
 int	parsing(t_data *data, int ac, char **av)
 {
 	if (ac != 2)
-	{
-		printf("Error\nWrong number of arguments\n");
-		return (1);
-	}
+		return (error(6));
 	if (check_file(data, av[1]) == 1)
-	{
-		printf("Error\npb fichier\n");
 		return (1);
-	}
 	return (0);
 }
 
