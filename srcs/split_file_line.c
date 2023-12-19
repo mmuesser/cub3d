@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_file_line.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pineau <pineau@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:05:08 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/11/30 15:21:43 by pineau           ###   ########.fr       */
+/*   Updated: 2023/12/19 07:55:03 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,14 @@ char	**split_file_line(char *tmp)
 	char	**file;
 
 	count = len_dest(tmp);
+	if (count < 9)
+		return (error(4), NULL);
 	file = (char **) malloc(sizeof(char *) * (count + 1));
 	if (!file)
-		return (NULL);
+		return (error(2), NULL);
 	file = create_str(file, tmp);
 	if (!file)
-		return (NULL);
+		return (error(2), NULL);
 	file[count] = NULL;
 	return (file);
 }
