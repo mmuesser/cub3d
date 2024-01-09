@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pineau <pineau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 11:41:20 by pineau            #+#    #+#             */
-/*   Updated: 2023/12/18 17:17:28 by mmuesser         ###   ########.fr       */
+/*   Updated: 2024/01/08 17:17:23 by pineau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,16 @@ int	main(int argc, char **argv)
 
 void	end(t_data *data)
 {
-	mlx_destroy_image(data->mlx, data->img->img_ptr);
-	mlx_destroy_image(data->mlx, data->no->texture);
-	mlx_destroy_image(data->mlx, data->so->texture);
-	mlx_destroy_image(data->mlx, data->we->texture);
-	mlx_destroy_image(data->mlx, data->ea->texture);
+	if (data->img->img_ptr)
+		mlx_destroy_image(data->mlx, data->img->img_ptr);
+	if (data->no->texture)
+		mlx_destroy_image(data->mlx, data->no->texture);
+	if (data->so->texture)
+		mlx_destroy_image(data->mlx, data->so->texture);
+	if (data->we->texture)
+		mlx_destroy_image(data->mlx, data->we->texture);
+	if (data->ea->texture)
+		mlx_destroy_image(data->mlx, data->ea->texture);
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);

@@ -6,7 +6,7 @@
 /*   By: pineau <pineau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 16:34:19 by pineau            #+#    #+#             */
-/*   Updated: 2023/12/07 17:58:47 by pineau           ###   ########.fr       */
+/*   Updated: 2024/01/08 17:18:37 by pineau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,20 @@ void	init_textures(t_data *data)
 {
 	data->no->texture = mlx_xpm_file_to_image(data->mlx, data->no->path,
 			&data->no->width, &data->no->height);
+	if (!data->no->texture)
+		return (end(data), exit(0));
 	data->so->texture = mlx_xpm_file_to_image(data->mlx, data->so->path,
 			&data->so->width, &data->so->height);
+	if (!data->so->texture)
+		return (end(data), exit(0));
 	data->we->texture = mlx_xpm_file_to_image(data->mlx, data->we->path,
 			&data->we->width, &data->we->height);
+	if (!data->we->texture)
+		return (end(data), exit(0));
 	data->ea->texture = mlx_xpm_file_to_image(data->mlx, data->ea->path,
 			&data->ea->width, &data->ea->height);
+	if (!data->ea->texture)
+		return (end(data), exit(0));
 }
 
 void	which_sprite(t_data *data, double len, double start)

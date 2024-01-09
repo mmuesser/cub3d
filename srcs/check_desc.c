@@ -3,27 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   check_desc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pineau <pineau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:31:09 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/12/18 17:55:42 by mmuesser         ###   ########.fr       */
+/*   Updated: 2024/01/08 17:49:17 by pineau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char	*get_path(char *str)
+int	check_number(char **desc)
 {
 	int		i;
-	char	*path;
+	int		j;
+	char	**tmp;
 
-	i = 0;
-	while (str[i] != ' ')
-		i++;
-	while (str[i] == ' ')
-		i++;
-	path = &str[i];
-	return (path);
+	tmp = ft_split("NO SO EA WE F C", ' ');
+	if (!tmp)
+		return (1);
+	j = 0;
+	i = -1;
+	while (desc[++i])
+	{
+		if (j == 6)
+			break ;
+		if (ft_strncmp(desc[i], tmp[j], ft_strlen(tmp[j])) == 0)
+		{
+			j++;
+			i = -1;
+			continue ;
+		}
+	}
+	if (j != 6)
+		return (free_tab(tmp), 1);
+	else
+		return (free_tab(tmp), 0);
 }
 
 int	check_line(char **desc)
@@ -40,6 +54,8 @@ int	check_line(char **desc)
 			&& ft_strncmp(desc[i], "WE ", 3) != 0
 			&& ft_strncmp(desc[i], "F ", 2) != 0
 			&& ft_strncmp(desc[i], "C ", 2) != 0))
+			return (1);
+		if (check_number(desc) == 1)
 			return (1);
 	}
 	return (0);
@@ -68,9 +84,8 @@ int	check_path(char **desc)
 	return (0);
 }
 
-int	check_rgb(char **desc, int test, int count)
+int	check_rgb(char **desc, int test, int count, int i)
 {
-	int	i;
 	int	j;
 
 	i = -1;
@@ -79,11 +94,12 @@ int	check_rgb(char **desc, int test, int count)
 		if (desc[i][0] != '\0' && (desc[i][0] == 'F' || desc[i][0] == 'C'))
 		{
 			count = 0;
-			j = 0;
+			j = 1;
 			while (desc[i][j])
 			{
-				while (desc[i][j] && ((desc[i][j] < '0' || desc[i][j] > '9')
-					&& desc[i][j] != '-'))
+				while (desc[i][j] && ((count == 0 && (desc[i][j] == ' '
+					|| desc[i][j] == '	')) || (count > 0 && (desc[i][j] == ','
+					&& (desc[i][j + 1] >= '0' && desc[i][j + 1] <= '9')))))
 					j++;
 				test = ft_atoi(&desc[i][j]);
 				count++;
@@ -103,7 +119,7 @@ int	check_desc(char **desc)
 		return (1);
 	if (check_path(desc) == 1)
 		return (1);
-	if (check_rgb(desc, 0, 0) == 1)
+	if (check_rgb(desc, 0, 0, 0) == 1)
 		return (1);
 	return (0);
 }

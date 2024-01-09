@@ -6,7 +6,7 @@
 /*   By: pineau <pineau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 11:36:06 by pineau            #+#    #+#             */
-/*   Updated: 2023/12/18 11:31:24 by pineau           ###   ########.fr       */
+/*   Updated: 2024/01/08 16:41:17 by pineau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,9 @@ void		print_line2(t_data *data, double i, double j, int color);
 
 /*parsing.c*/
 char		**split_file_line(char *tmp);
+
+/*utils2.c*/
+char		*get_path(char *str);
 
 /*textures.c*/
 void		init_textures(t_data *data);

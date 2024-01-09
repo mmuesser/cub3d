@@ -41,6 +41,7 @@ SRC	= \
 		draws2.c\
 		keys_moves2.c\
 		raycasting2.c\
+		utils2.c\
 
 SRC_BONUS = \
 		main.c \
@@ -68,6 +69,7 @@ SRC_BONUS = \
 		draws2.c\
 		keys_moves2.c\
 		raycasting2.c\
+		utils2.c\
 		
 	
 
