@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 17:38:36 by mmuesser          #+#    #+#             */
-/*   Updated: 2024/01/09 12:54:57 by mmuesser         ###   ########.fr       */
+/*   Updated: 2024/01/09 13:03:27 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,6 @@ void	fill_line(char **line, char *src, int len)
 		i++;
 	}
 	(*line)[i] = '\0';
-}
-
-void	print_tab(char **tab) /*A DEGAGER*/
-{
-	int	i;
-
-	i = -1;
-	while (tab[++i])
-		printf("%s\n", tab[i]);
 }
 
 char	*get_path(char *str)
