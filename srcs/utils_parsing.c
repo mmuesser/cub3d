@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pineau <pineau@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 17:38:36 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/12/12 16:32:58 by pineau           ###   ########.fr       */
+/*   Updated: 2024/01/09 12:54:57 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,27 @@ void	fill_line(char **line, char *src, int len)
 	(*line)[i] = '\0';
 }
 
-void	print_tab(char **tab)
+void	print_tab(char **tab) /*A DEGAGER*/
 {
 	int	i;
 
 	i = -1;
 	while (tab[++i])
 		printf("%s\n", tab[i]);
+}
+
+char	*get_path(char *str)
+{
+	int		i;
+	char	*path;
+
+	i = 0;
+	while (str[i] != ' ')
+		i++;
+	while (str[i] == ' ')
+		i++;
+	path = &str[i];
+	return (path);
 }
 
 void	free_tab(char **tab)
